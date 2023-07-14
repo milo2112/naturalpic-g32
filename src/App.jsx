@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 import GlobalContext from "./context/GlobalContext"
 
 export default function App() {
-  const endpoint = "/fotos.json"
+  const endpoint = "./src/assets/fotos.json"
   const [photos, setPhotos] = useState([])
   const getData = async (url) => {
     const resp = await fetch(url)
