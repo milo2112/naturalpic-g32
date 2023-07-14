@@ -1,11 +1,12 @@
+import Galeria from "../components/Galeria"
 export default function Favoritos() {
   
   return (
-    <div>
-      <h1>Fotos favoritas</h1>
-      <div className="p-3 galeria grid-columns-4">
-       
+    <>
+      <div id="favoritos">
+        <h1>Fotos favoritas</h1>
+        <Galeria propFavoritos = { true } />
       </div>
-    </div>
+    </>
   );
 }

@@ -3,7 +3,7 @@ import "../assets/css/galeria.css"
 import Heart from "./Heart"
 import GlobalContext from "../context/GlobalContext"
 
-export default function Galeria() {
+export default function Galeria({ propFavoritos = false }) {
   const { photos, setPhotos } = useContext(GlobalContext)
 
   const setFavorito = (id) => {
@@ -14,12 +14,12 @@ export default function Galeria() {
   }
   return (
     <div className="galeria grid-columns-5 p-3">
-      {photos.map(({ id, src, liked, alt }) => (
+      {photos.filter(({ liked }) => propFavoritos ? liked : true).map(({ id, src, liked, alt }) => (
         <div 
           onClick={() => setFavorito(id)}
           key={id}
           className="foto" 
-          style={{ backgroundImage: `url(${src.original})` }}>
+          style={{ backgroundImage: `url(${src.tiny})` }}>
           <Heart filled={liked} />
           <p> {alt} </p>
         </div>
