@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar"
 import Home from "./views/Home"
 import Favoritos from "./views/Favoritos"
 import { useEffect, useState } from "react"
+import GlobalContext from "./context/GlobalContext"
 
 export default function App() {
   const endpoint = "/fotos.json"
@@ -21,15 +22,16 @@ export default function App() {
   const sharedGlobal = { photos, setPhotos}
   return (
     <div className="App">
-      
-      <BrowserRouter>
-        <Navbar />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/favoritos" element={<Favoritos />} />
-        </Routes>
-      </BrowserRouter>
+      <GlobalContext.Provider value = {sharedGlobal}>
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/favoritos" element={<Favoritos />} />
+          </Routes>
+        </BrowserRouter>
+      </GlobalContext.Provider>
     </div>
   );
 }
